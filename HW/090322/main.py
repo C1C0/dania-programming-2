@@ -32,3 +32,11 @@ if __name__ == '__main__':
     b2.display()
     b3.display()
     b4.display()
+    
+    beforeSelling = b1.getCopies()
+    
+    for i in range(beforeSelling):
+        b1.sell()
+        
+    b1.display()
+    b1.sell()

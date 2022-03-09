@@ -11,6 +11,6 @@ class BookFactory(Factory):
     title = Faker('sentence')
     author = Faker('name')
     publisher = Faker('company')
-    pages = fuzzy.FuzzyDecimal(10, 500)
+    pages = fuzzy.FuzzyInteger(10, 500)
     price = fuzzy.FuzzyDecimal(4, 99)
-    copies = fuzzy.FuzzyDecimal(50, 100000)
+    copies = fuzzy.FuzzyInteger(0, 100000)
