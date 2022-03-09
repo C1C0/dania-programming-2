@@ -28,10 +28,10 @@ if __name__ == '__main__':
     b3 = fa.BookFactory()
     b4 = fa.BookFactory()
     
-    b1.display()
-    b2.display()
-    b3.display()
-    b4.display()
+    books = [b1, b2, b3, b4]
+    
+    for book in books:
+        book.display()
     
     beforeSelling = b1.getCopies()
     
