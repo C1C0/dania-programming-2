@@ -1,4 +1,7 @@
+import factories as fa
+
 from BankAccount import BankAccount
+from Book import Book
 
 if __name__ == '__main__':
     acc1 = BankAccount("Acc1")
@@ -17,3 +20,15 @@ if __name__ == '__main__':
     
     acc1.display()
     acc2.display()
+    
+    ######
+    
+    b1 = fa.BookFactory()
+    b2 = fa.BookFactory()
+    b3 = fa.BookFactory()
+    b4 = fa.BookFactory()
+    
+    b1.display()
+    b2.display()
+    b3.display()
+    b4.display()
