@@ -1,5 +1,6 @@
 import os
 import pygame
+from game import GAME
 
 class _GameItem:
     def __init__(self, dimesions: tuple, *path) -> None:
@@ -22,5 +23,5 @@ class IMAGES:
     pass
     
 class ITEMS:
-    YELLOW_SPACESHIP = _GameItem((55, 35), '..', 'assets', 'spaceship_yellow.png')
-    RED_SPACESHIP = _GameItem((55, 35), '..', 'assets', 'spaceship_red.png')
+    YELLOW_SPACESHIP = _GameItem((GAME.ItemsDimenstions.Spaceship.WIDTH, GAME.ItemsDimenstions.Spaceship.HEIGHT), '..', 'assets', 'spaceship_yellow.png')
+    RED_SPACESHIP = _GameItem((GAME.ItemsDimenstions.Spaceship.WIDTH, GAME.ItemsDimenstions.Spaceship.HEIGHT), '..', 'assets', 'spaceship_red.png')
