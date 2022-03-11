@@ -22,8 +22,14 @@ def main() -> int:
     Main Game's code
     """
     
+    # Controls the speed of main loop
+    clock = pygame.time.Clock()
+    
     run = True
     while run:
+        
+        # Enables max specified framerate, but doesn't affect the TIME of the game
+        clock.tick(GAME.FPS)
         
         # get all events and listen to them
         for event in pygame.event.get():
