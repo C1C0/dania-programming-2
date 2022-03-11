@@ -1,5 +1,7 @@
 import pygame
 
+from config.colors import COLORS
+
 """
 Terms:
 - surface
@@ -23,8 +25,13 @@ def main() -> int:
         # get all events and listen to them
         for event in pygame.event.get():
             
+            # If quit ... then quit :)
             if event.type == pygame.QUIT:
                 run = False
+                
+            # DRAWING !!!!
+            WIN.fill(COLORS.WHITE)
+            pygame.display.update()
                 
     pygame.quit()
     
