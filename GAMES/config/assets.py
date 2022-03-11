@@ -1,6 +1,7 @@
 import os
 import pygame
-from game import GAME
+
+from config.game import GAME
 
 
 class _GameItem:
