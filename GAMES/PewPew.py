@@ -13,12 +13,13 @@ Terms:
 def drawWindow() -> None:
     # DRAWING !!!!
     GAME.WIN.fill(COLORS.WHITE)
-    
+
     GAME.WIN.blit(ITEMS.YELLOW_SPACESHIP.getItem(), (300, 100))
     GAME.WIN.blit(ITEMS.RED_SPACESHIP.getItem(), (500, 200))
 
     pygame.display.update()
-    
+
+
 def initItems() -> None:
     ITEMS.YELLOW_SPACESHIP.rotateItem(90)
     ITEMS.RED_SPACESHIP.rotateItem(-90)
@@ -28,7 +29,7 @@ def main() -> int:
     """
     Main Game's code
     """
-    
+
     initItems()
 
     run = True
