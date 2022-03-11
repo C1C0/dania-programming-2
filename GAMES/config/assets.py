@@ -1,9 +1,26 @@
 import os
 import pygame
 
+class _GameItem:
+    def __init__(self, dimesions: tuple, *path) -> None:
+        """_summary_
+
+        Args:
+            dimesions (tuple): _description_
+            *path (strings): being accessed from this file
+        """
+        self.__image = pygame.image.load(os.path.join(os.path.dirname(__file__), *path))
+        self.__object = pygame.transform.scale(self.__image, dimesions)
+        
+    def getItem(self) -> pygame.Surface:
+        return self.__object
+
 class COLORS:
     WHITE = (255,255,255)
     
 class IMAGES:
-    YELLOW_SPACESHIP_IMAGE = pygame.image.load(os.path.join(os.path.dirname(__file__), '..', 'assets', 'spaceship_yellow.png'))
-    RED_SPACESHIP_IMAGE = pygame.image.load(os.path.join(os.path.dirname(__file__), '..', 'assets', 'spaceship_red.png'))
+    pass
+    
+class ITEMS:
+    YELLOW_SPACESHIP = _GameItem((55, 35), '..', 'assets', 'spaceship_yellow.png')
+    RED_SPACESHIP = _GameItem((55, 35), '..', 'assets', 'spaceship_red.png')
