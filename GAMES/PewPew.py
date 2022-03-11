@@ -14,6 +14,8 @@ def drawWindow() -> None:
     # DRAWING !!!!
     GAME.WIN.fill(COLORS.WHITE)
 
+    pygame.draw.rect(GAME.WIN, COLORS.BLACK, ITEMS.MID_BORDER.getEntity())
+    
     GAME.WIN.blit(ITEMS.YELLOW_SPACESHIP.getItem(), (ITEMS.YELLOW_SPACESHIP.getPlayer().x, ITEMS.YELLOW_SPACESHIP.getPlayer().y))
     GAME.WIN.blit(ITEMS.RED_SPACESHIP.getItem(), (ITEMS.RED_SPACESHIP.getPlayer().x, ITEMS.RED_SPACESHIP.getPlayer().y))
 

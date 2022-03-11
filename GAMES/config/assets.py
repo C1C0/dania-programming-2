@@ -12,6 +12,7 @@ class _GameItem:
             dimesions (tuple): _description_
             *path (strings): being accessed from this file
         """
+
         self.__image = pygame.image.load(
             os.path.join(os.path.dirname(__file__), *path))
         self.__object: pygame.Surface = pygame.transform.scale(
@@ -25,13 +26,21 @@ class _GameItem:
         return self.__object
 
 
-class _PLAYER(_GameItem):
-
+class _GameEntity(_GameItem):
     def __init__(self, positions: tuple, dimesions: tuple, *path) -> None:
-        super().__init__(dimesions, *path)
+        if path:
+            super().__init__(dimesions, *path)
 
-        self.__player = pygame.Rect(
+        self._entity = pygame.Rect(
             positions[0], positions[1], dimesions[0], dimesions[1])
+        
+    def getEntity(self) -> pygame.Rect:
+        return self._entity
+
+
+class _PLAYER(_GameEntity):
+    def __init__(self, positions: tuple, dimesions: tuple, *path) -> None:
+        super().__init__(positions, dimesions, *path)
 
     def checkMovement(self, vel: int = GAME.DEFAULT_MOVE_VEL, keys: tuple = [pygame.K_a, pygame.K_d, pygame.K_w, pygame.K_s]) -> None:
         if pygame.key.get_pressed()[keys[0]]:  # LEFT
@@ -48,23 +57,24 @@ class _PLAYER(_GameItem):
 
     def __move(self, direction: str, speed: int = 1) -> None:
         if direction == DIRECTIONS.LEFT:
-            self.__player.x -= speed
+            self._entity.x -= speed
 
         if direction == DIRECTIONS.RIGHT:
-            self.__player.x += speed
+            self._entity.x += speed
 
         if direction == DIRECTIONS.UP:
-            self.__player.y -= speed
+            self._entity.y -= speed
 
         if direction == DIRECTIONS.DOWN:
-            self.__player.y += speed
+            self._entity.y += speed
 
     def getPlayer(self) -> pygame.Rect:
-        return self.__player
+        return self._entity
 
 
 class COLORS:
     WHITE = (255, 255, 255)
+    BLACK = (0, 0, 0)
 
 
 class IMAGES:
@@ -76,3 +86,4 @@ class ITEMS:
                                             GAME.ItemsDimenstions.Spaceship.HEIGHT), '..', 'assets', 'spaceship_yellow.png')
     RED_SPACESHIP = _PLAYER((500, 300), (GAME.ItemsDimenstions.Spaceship.WIDTH,
                                          GAME.ItemsDimenstions.Spaceship.HEIGHT), '..', 'assets', 'spaceship_red.png')
+    MID_BORDER = _GameEntity((GAME.WIDTH / 2 - 5, 0), (10, GAME.HEIGHT))
