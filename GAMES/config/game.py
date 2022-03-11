@@ -12,6 +12,8 @@ class GAME:
     WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 
     FPS = 60
+    
+    DEFAULT_MOVE_VEL = 5
 
     CLOCK = pygame.time.Clock()
 

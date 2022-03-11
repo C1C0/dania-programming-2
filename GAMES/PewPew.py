@@ -44,8 +44,12 @@ def main() -> int:
             # If quit ... then quit :)
             if event.type == pygame.QUIT:
                 run = False
-
-        ITEMS.YELLOW_SPACESHIP.move(D.RIGHT)
+                
+                
+        ITEMS.YELLOW_SPACESHIP.checkMovement(10)
+        ITEMS.RED_SPACESHIP.checkMovement(10, [pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN])
+        
+        
         drawWindow()
 
     pygame.quit()
