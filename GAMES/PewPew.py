@@ -14,6 +14,11 @@ WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 # Set name
 pygame.display.set_caption("PewPew Game - Winner of Game Award 2099")
 
+def drawWindow() -> None:
+    # DRAWING !!!!
+    WIN.fill(COLORS.WHITE)
+    pygame.display.update()
+
 def main() -> int:
     """
     Main Game's code
@@ -29,9 +34,7 @@ def main() -> int:
             if event.type == pygame.QUIT:
                 run = False
                 
-            # DRAWING !!!!
-            WIN.fill(COLORS.WHITE)
-            pygame.display.update()
+        drawWindow()
                 
     pygame.quit()
     
