@@ -48,8 +48,8 @@ def main() -> int:
                 run = False
                 
                 
-        ITEMS.YELLOW_SPACESHIP.checkMovement(10)
-        ITEMS.RED_SPACESHIP.checkMovement(10, [pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN])
+        ITEMS.YELLOW_SPACESHIP.checkMovement(ITEMS.MID_BORDER, 10)
+        ITEMS.RED_SPACESHIP.checkMovement(ITEMS.MID_BORDER, 10, [pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN])
         
         
         drawWindow()
