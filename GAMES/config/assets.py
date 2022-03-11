@@ -14,8 +14,9 @@ class _GameItem:
         """
         self.__image = pygame.image.load(
             os.path.join(os.path.dirname(__file__), *path))
-        self.__object : pygame.Surface = pygame.transform.scale(self.__image, dimesions)
-        
+        self.__object: pygame.Surface = pygame.transform.scale(
+            self.__image, dimesions)
+
     def rotateItem(self, rotationDegree: int) -> pygame.Surface:
         self.__object = pygame.transform.rotate(self.__object, rotationDegree)
         return self.__object
