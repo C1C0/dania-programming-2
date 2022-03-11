@@ -1,6 +1,7 @@
 import pygame
 
 from config.colors import COLORS
+from config.game import GAME
 
 """
 Terms:
@@ -8,15 +9,12 @@ Terms:
 - events
 """
 
-WIDTH, HEIGHT = 900, 500
-WIN = pygame.display.set_mode((WIDTH, HEIGHT))
-
 # Set name
 pygame.display.set_caption("PewPew Game - Winner of Game Award 2099")
 
 def drawWindow() -> None:
     # DRAWING !!!!
-    WIN.fill(COLORS.WHITE)
+    GAME.WIN.fill(COLORS.WHITE)
     pygame.display.update()
 
 def main() -> int:
