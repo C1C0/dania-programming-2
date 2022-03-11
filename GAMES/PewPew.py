@@ -1,7 +1,7 @@
 import pygame
 
 from config.assets import COLORS, IMAGES, ITEMS
-from config.game import GAME
+from config.game import GAME, DIRECTIONS as D
 
 """
 Terms:
@@ -14,8 +14,8 @@ def drawWindow() -> None:
     # DRAWING !!!!
     GAME.WIN.fill(COLORS.WHITE)
 
-    GAME.WIN.blit(ITEMS.YELLOW_SPACESHIP.getItem(), (300, 100))
-    GAME.WIN.blit(ITEMS.RED_SPACESHIP.getItem(), (500, 200))
+    GAME.WIN.blit(ITEMS.YELLOW_SPACESHIP.getItem(), (ITEMS.YELLOW_SPACESHIP.getPlayer().x, ITEMS.YELLOW_SPACESHIP.getPlayer().y))
+    GAME.WIN.blit(ITEMS.RED_SPACESHIP.getItem(), (ITEMS.RED_SPACESHIP.getPlayer().x, ITEMS.RED_SPACESHIP.getPlayer().y))
 
     pygame.display.update()
 
@@ -45,6 +45,7 @@ def main() -> int:
             if event.type == pygame.QUIT:
                 run = False
 
+        ITEMS.YELLOW_SPACESHIP.move(D.RIGHT)
         drawWindow()
 
     pygame.quit()

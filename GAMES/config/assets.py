@@ -1,7 +1,7 @@
 import os
 import pygame
 
-from config.game import GAME
+from config.game import GAME, DIRECTIONS
 
 
 class _GameItem:
@@ -24,6 +24,28 @@ class _GameItem:
     def getItem(self) -> pygame.Surface:
         return self.__object
 
+class _PLAYER(_GameItem):
+    
+    def __init__(self, positions: tuple, dimesions: tuple, *path) -> None:
+        super().__init__(dimesions, *path)
+        
+        self.__player = pygame.Rect(positions[0], positions[1], dimesions[0], dimesions[1])
+        
+    def move(self, direction: str, speed: int = 1) -> None:
+        if direction == DIRECTIONS.LEFT:
+            self.__player.x -= speed
+        
+        if direction == DIRECTIONS.RIGHT:
+            self.__player.x += speed
+        
+        if direction == DIRECTIONS.UP:
+            self.__player.y -= speed
+            
+        if direction == DIRECTIONS.DOWN:
+            self.__player.y += speed
+        
+    def getPlayer(self) -> pygame.Rect:
+        return self.__player
 
 class COLORS:
     WHITE = (255, 255, 255)
@@ -34,7 +56,7 @@ class IMAGES:
 
 
 class ITEMS:
-    YELLOW_SPACESHIP = _GameItem((GAME.ItemsDimenstions.Spaceship.WIDTH,
+    YELLOW_SPACESHIP = _PLAYER((200, 300), (GAME.ItemsDimenstions.Spaceship.WIDTH,
                                  GAME.ItemsDimenstions.Spaceship.HEIGHT), '..', 'assets', 'spaceship_yellow.png')
-    RED_SPACESHIP = _GameItem((GAME.ItemsDimenstions.Spaceship.WIDTH,
+    RED_SPACESHIP = _PLAYER((500, 300), (GAME.ItemsDimenstions.Spaceship.WIDTH,
                               GAME.ItemsDimenstions.Spaceship.HEIGHT), '..', 'assets', 'spaceship_red.png')

@@ -1,5 +1,11 @@
 import pygame
 
+class DIRECTIONS:
+    LEFT = 'left'
+    RIGHT = 'right'
+    UP = 'up'
+    DOWN = 'down'
+    
 
 class GAME:
     WIDTH, HEIGHT = 900, 500
