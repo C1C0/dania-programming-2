@@ -9,9 +9,6 @@ Terms:
 - events
 """
 
-# Set name
-pygame.display.set_caption("PewPew Game - Winner of Game Award 2099")
-
 def drawWindow() -> None:
     # DRAWING !!!!
     GAME.WIN.fill(COLORS.WHITE)
@@ -22,14 +19,11 @@ def main() -> int:
     Main Game's code
     """
     
-    # Controls the speed of main loop
-    clock = pygame.time.Clock()
-    
     run = True
     while run:
         
         # Enables max specified framerate, but doesn't affect the TIME of the game
-        clock.tick(GAME.FPS)
+        GAME.CLOCK.tick(GAME.FPS)
         
         # get all events and listen to them
         for event in pygame.event.get():
