@@ -1,6 +1,6 @@
 import pygame
 
-from config.colors import COLORS
+from config.assets import COLORS, IMAGES
 from config.game import GAME
 
 """
@@ -12,6 +12,10 @@ Terms:
 def drawWindow() -> None:
     # DRAWING !!!!
     GAME.WIN.fill(COLORS.WHITE)
+    
+    # Drawing from top left corner
+    GAME.WIN.blit(IMAGES.YELLOW_SPACESHIP_IMAGE, (300, 100))
+    
     pygame.display.update()
 
 def main() -> int:
