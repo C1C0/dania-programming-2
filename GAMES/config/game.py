@@ -17,15 +17,24 @@ class GAME:
     DEFAULT_BULLET_VEL = 50
     DEFAULT_BULLETS_COUNT = 20
     
+    FIRST_RUN = True
+    
+    LOSER: any = None
+    
     CLOCK = pygame.time.Clock()
     
+    class Font:
+        FONT = None
+    
     class Events:
-        PLAYER_HIT = pygame.USEREVENT + 1
+        WINNER = pygame.USEREVENT + 1
 
     class ItemsDimenstions:
         class Spaceship:
             HEIGHT = 55
             WIDTH = 45
+            
+            MAX_HEALTH = 4
         
         class Bullet:
             HEIGHT = 5

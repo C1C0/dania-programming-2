@@ -3,7 +3,6 @@ import pygame
 
 from config.game import GAME, DIRECTIONS
 
-
 class _GameItem:
     def __init__(self, dimesions: tuple, *path) -> None:
         """_summary_
@@ -44,11 +43,15 @@ class _BORDER(_GameEntity):
 
 
 class _PLAYER(_GameEntity):
-    def __init__(self, positions: tuple, dimesions: tuple, *path) -> None:
+    def __init__(self, name, positions: tuple, dimesions: tuple, *path) -> None:
         super().__init__(positions, dimesions, *path)
+
+        self.name = name
 
         self.bulletsCount = GAME.DEFAULT_BULLETS_COUNT
         self.bullets: list = []
+        
+        self.health = GAME.ItemsDimenstions.Spaceship.MAX_HEALTH
 
     def checkMovement(self, border: _BORDER, speed: int = GAME.DEFAULT_MOVE_VEL, keys: tuple = [pygame.K_a, pygame.K_d, pygame.K_w, pygame.K_s]) -> None:
         pressed = pygame.key.get_pressed()
@@ -94,6 +97,8 @@ class _PLAYER(_GameEntity):
     def shoot(self, key: int, facingRight: bool = True):
         if pygame.key.get_pressed()[key] and len(self.bullets) < self.bulletsCount:
 
+            SOUNDS.BULLET_FIRE.play()
+
             if facingRight:
                 x = self._entity.x + self._entity.width
             else:
@@ -115,8 +120,15 @@ class _PLAYER(_GameEntity):
                 bullet.x -= GAME.DEFAULT_BULLET_VEL
 
             if self._entity.colliderect(bullet):
-                pygame.event.post(pygame.event.Event(GAME.Events.PLAYER_HIT))
+                SOUNDS.BULLET_HIT.play()
+                self.health -= 1
                 bullets.remove(bullet)
+                
+                if not self.stillAlive():
+                    pygame.event.post(pygame.event.Event(GAME.Events.WINNER))
+                    GAME.LOSER = self
+                    
+                return
 
             if facingRight:
                 if bullet.x > GAME.WIDTH:
@@ -124,6 +136,9 @@ class _PLAYER(_GameEntity):
             else:
                 if bullet.x < 0:
                     bullets.remove(bullet)
+                    
+    def stillAlive(self):
+        return self.health > 0
 
 
 class COLORS:
@@ -136,11 +151,20 @@ class COLORS:
 class IMAGES:
     pass
 
+class SOUNDS:
+    pygame.mixer.init()
+    BULLET_HIT = pygame.mixer.Sound(os.path.join(os.path.dirname(
+            __file__), '..', 'assets', 'Grenade+1.mp3'))
+    BULLET_FIRE = pygame.mixer.Sound(os.path.join(os.path.dirname(
+        __file__), '..', 'assets', 'Gun+Silencer.mp3'))
+    
+    BULLET_HIT.set_volume(.06)
+    BULLET_FIRE.set_volume(.05)
 
 class ITEMS:
-    YELLOW_SPACESHIP = _PLAYER((200, 300), (GAME.ItemsDimenstions.Spaceship.WIDTH,
+    YELLOW_SPACESHIP = _PLAYER("Player - Left", (200, 300), (GAME.ItemsDimenstions.Spaceship.WIDTH,
                                             GAME.ItemsDimenstions.Spaceship.HEIGHT), '..', 'assets', 'spaceship_yellow.png')
-    RED_SPACESHIP = _PLAYER((500, 300), (GAME.ItemsDimenstions.Spaceship.WIDTH,
+    RED_SPACESHIP = _PLAYER("Player - Right", (500, 300), (GAME.ItemsDimenstions.Spaceship.WIDTH,
                                          GAME.ItemsDimenstions.Spaceship.HEIGHT), '..', 'assets', 'spaceship_red.png')
     MID_BORDER = _BORDER((GAME.WIDTH / 2 - 5, 0), (10, GAME.HEIGHT))
     SPACE = pygame.transform.scale(
