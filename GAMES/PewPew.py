@@ -12,14 +12,21 @@ Terms:
 
 def drawWindow() -> None:
     # DRAWING !!!!
-    GAME.WIN.fill(COLORS.WHITE)
+    GAME.WIN.blit(ITEMS.SPACE, (0, 0))
 
     pygame.draw.rect(GAME.WIN, COLORS.BLACK, ITEMS.MID_BORDER.getEntity())
     
     GAME.WIN.blit(ITEMS.YELLOW_SPACESHIP.getItem(), (ITEMS.YELLOW_SPACESHIP.getPlayer().x, ITEMS.YELLOW_SPACESHIP.getPlayer().y))
     GAME.WIN.blit(ITEMS.RED_SPACESHIP.getItem(), (ITEMS.RED_SPACESHIP.getPlayer().x, ITEMS.RED_SPACESHIP.getPlayer().y))
+    
+    drawBullets(ITEMS.YELLOW_SPACESHIP, COLORS.YELLOW)
+    drawBullets(ITEMS.RED_SPACESHIP, COLORS.RED)
 
     pygame.display.update()
+    
+def drawBullets(spaceship, color):
+    for bullet in spaceship.bullets:
+        pygame.draw.rect(GAME.WIN, color, bullet)
 
 
 def initItems() -> None:
@@ -46,11 +53,19 @@ def main() -> int:
             # If quit ... then quit :)
             if event.type == pygame.QUIT:
                 run = False
+            
+            if event.type == pygame.KEYDOWN: # does something only on event of PRESSING down (any) key   
+                ITEMS.YELLOW_SPACESHIP.shoot(pygame.K_SPACE)
+                ITEMS.RED_SPACESHIP.shoot(pygame.K_RCTRL, False)
                 
+            if event.type == GAME.Events.PLAYER_HIT:
+                pass
                 
         ITEMS.YELLOW_SPACESHIP.checkMovement(ITEMS.MID_BORDER, 10)
         ITEMS.RED_SPACESHIP.checkMovement(ITEMS.MID_BORDER, 10, [pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN])
         
+        ITEMS.YELLOW_SPACESHIP.checkCollisionsWith(ITEMS.RED_SPACESHIP.bullets, False)
+        ITEMS.RED_SPACESHIP.checkCollisionsWith(ITEMS.YELLOW_SPACESHIP.bullets)
         
         drawWindow()
 
