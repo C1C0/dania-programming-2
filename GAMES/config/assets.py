@@ -63,7 +63,7 @@ class _PLAYER(_GameEntity):
 
             if pygame.key.get_pressed()[keys[1]]:  # RIGHT
                 self.__move(DIRECTIONS.RIGHT, speed)
-                
+
         if pygame.key.get_pressed()[keys[2]]:  # UP
             self.__move(DIRECTIONS.UP, speed)
 
