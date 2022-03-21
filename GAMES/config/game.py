@@ -14,13 +14,22 @@ class GAME:
     FPS = 60
     
     DEFAULT_MOVE_VEL = 5
-
+    DEFAULT_BULLET_VEL = 50
+    DEFAULT_BULLETS_COUNT = 20
+    
     CLOCK = pygame.time.Clock()
+    
+    class Events:
+        PLAYER_HIT = pygame.USEREVENT + 1
 
     class ItemsDimenstions:
         class Spaceship:
             HEIGHT = 55
             WIDTH = 45
+        
+        class Bullet:
+            HEIGHT = 5
+            WIDTH = 10
 
     def init() -> None:
         # Set name
