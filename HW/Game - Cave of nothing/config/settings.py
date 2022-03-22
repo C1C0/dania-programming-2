@@ -1,16 +1,19 @@
 LEVEL_MAP = [
-'                            ',
-'                            ',
-'                            ',
-'                            ',
-'                            ',
-'XX           XXXX           ',
-'                XXXX        ',
-'             XXXX           ',
-'                            ',
-'   XXXXXX                   ',
-'X  X     XXXX     XXXXXXXXXX',    
+'                                    ',
+'                                    ',
+'                                    ',
+'                                    ',
+'                                    ',
+'XXXX           XXXX                 ',
+'                  XXXX              ',
+'               XXXX                 ',
+'                            X       ',
+'     XXXXXX                         ',
+'XXX  X     XXXX     XXXXXXX   XX XXX',
+'                                    ',
+'                                    ',
+'                                    ',    
 ]
 
-TILE_SIZE = 64
+TILE_SIZE = 32
 
