@@ -16,4 +16,4 @@ LEVEL_MAP = [
 ]
 
 TILE_SIZE = 32
-
+PLAYER_SIZES : tuple = (16, 32)
