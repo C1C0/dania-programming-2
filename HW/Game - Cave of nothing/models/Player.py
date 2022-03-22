@@ -1,6 +1,6 @@
 import pygame
 
-from config.settings import PLAYER_SIZES, PLAYER_SPEED_MULTIPLIER
+from config.settings import PLAYER_SIZES, PLAYER_DEFAULT_SPEED
 
 PLAYER_SIGN = 'P'
 
@@ -14,7 +14,7 @@ class Player(pygame.sprite.Sprite):
         
         self.direction = pygame.math.Vector2(0,0)
         
-        self.speed = 5
+        self.speed = PLAYER_DEFAULT_SPEED
         
         
     def getInput(self):
