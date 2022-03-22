@@ -1,2 +1,2 @@
-ent.get():
-        if event.type ==
+
+    for event in pygame.event.get():

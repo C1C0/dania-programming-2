@@ -8,7 +8,7 @@ LEVEL_MAP = [
 '                  XXXX              ',
 '               XXXX                 ',
 '                            X       ',
-'     XXXXXX                         ',
+'P    XXXXXX                         ',
 'XXX  X     XXXX     XXXXXXX   XX XXX',
 '                                    ',
 '                                    ',
