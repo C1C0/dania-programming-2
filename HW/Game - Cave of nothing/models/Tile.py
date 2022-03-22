@@ -1,0 +1,9 @@
+import pygame
+import config.colors as colors
+
+class Tile(pygame.sprite.Sprite):
+    def __init__(self, pos, size) -> None:
+        super().__init__()
+        self.image = pygame.Surface((size, size))
+        self.image.fill(colors.GREY)
+        self.rect = self.image.get_rect(topleft = pos)
