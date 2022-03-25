@@ -49,12 +49,40 @@ class Level:
                       spriteToAdd: pygame.sprite.Sprite):
         if cell == sign:
             groupToAdd.add(spriteToAdd)
+            
+    def horizontalMovementCollision(self):
+        player = self.player.sprite
+        
+        player.rect.x += player.direction.x * player.speed
+        
+        for sprite in self.tiles.sprites():
+            if sprite.rect.colliderect(player.rect):
+                if player.direction.x < 0:
+                    player.rect.left = sprite.rect.right
+                elif player.direction.x > 0:
+                    player.rect.right = sprite.rect.left
+                    
+    def verticalMoementCollision(self):
+        player = self.player.sprite       
+        player.apply_gravity()
+        
+        for sprite in self.tiles.sprites():
+            if sprite.rect.colliderect(player.rect):
+                if player.direction.y < 0:
+                    player.rect.top = sprite.rect.bottom
+                    player.direction.y = 0
+                elif player.direction.y > 0:
+                    player.rect.bottom = sprite.rect.top       
+                    player.direction.y = 0
+                    player.inJump = False
 
     def run(self):
         self.tiles.update(self.worldShift)
         self.tiles.draw(self.displaySurface)
         
         self.player.update()
+        self.horizontalMovementCollision()
+        self.verticalMoementCollision()
         self.player.draw(self.displaySurface)
 
         self.scroll_x()

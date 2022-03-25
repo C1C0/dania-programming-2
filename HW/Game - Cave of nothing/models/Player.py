@@ -18,6 +18,7 @@ class Player(pygame.sprite.Sprite):
         
         self.gravity = GRAVITY
         self.jump_speed = PLAYER_JUMP_SPEED
+        self.inJump = False
         
         
     def getInput(self):
@@ -39,10 +40,9 @@ class Player(pygame.sprite.Sprite):
         self.rect.y += self.direction.y
         
     def jump(self):
-        self.direction.y = self.jump_speed
+        if not self.inJump:
+            self.direction.y = self.jump_speed
+            self.inJump = True
             
     def update(self):
         self.getInput()
-        self.rect.x += self.direction.x * self.speed
-        
-        self.apply_gravity()
