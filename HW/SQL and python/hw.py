@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `{DB.TABLE1}` (
     `name` VARCHAR(255),
     `subject` VARCHAR(255),
     PRIMARY KEY (`id`)
-)""")
+)ENGINE=InnoDB AUTO_INCREMENT=1""")
 
 cursor.execute(f"DROP TABLE IF EXISTS `{DB.TABLE2}`")
 cursor.execute(f"""
@@ -32,6 +32,6 @@ CREATE TABLE IF NOT EXISTS `{DB.TABLE2}` (
     `name` VARCHAR(255),
     `subject` VARCHAR(255),
     PRIMARY KEY (`id`)
-)""")
+)ENGINE=InnoDB AUTO_INCREMENT=1""")
 
 con.close()
