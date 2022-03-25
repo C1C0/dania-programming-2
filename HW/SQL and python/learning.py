@@ -35,6 +35,27 @@ VALUES (%s, %s)
     ("User 4", "Address 4"),
 ])
 
+# con.commit()
+
+DB_TABLE_PARTICIPANTS = 'participants'
+cursor.execute(f"DROP TABLE IF EXISTS {DB_TABLE_PARTICIPANTS}")
+cursor.execute(f"""
+CREATE TABLE IF NOT EXISTS {DB_TABLE_PARTICIPANTS} (
+    `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+    `firstname` VARCHAR(255),
+    `lastname` VARCHAR(255), 
+    `nationality` VARCHAR(255),
+    `born` int,
+    PRIMARY KEY (`id`)
+)ENGINE=InnoDB AUTO_INCREMENT=1""")
+
+cursor.execute(f"""
+INSERT INTO `{DB_TABLE_PARTICIPANTS}` (`firstname`, `lastname`, `nationality`, `born`)
+VALUES (%s, %s, %s, %s)
+""", ("Justing", "Gatlin", "USA", 1982),
+)
+
 con.commit()
+
 
 con.close()
