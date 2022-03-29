@@ -78,7 +78,9 @@ def third_exercise(maxFactorials: int):
         t = threading.Thread(target=callFactorial, args=(num, ))
         threads.append(t)
         t.start()
-        t.join()
+        
+    for th in threads:
+        th.join()
         
 # 4
 def fourth_exercise_point_one(maxFactorialsGroups: int):
@@ -101,6 +103,8 @@ def fourth_exercise_with_multiprocessing(maxFactorialsGroups: int):
         p = multiprocessing.Process(target=third_exercise, args=(i, ))
         processes.append(p)
         p.start()
+    
+    for p in processes:
         p.join()
     
     print("time needed: ", time.time() - t1)
@@ -110,5 +114,5 @@ if __name__ == '__main__':
     # first_exercise()
     # second_exercise()
     # third_exercise(8)
-    fourth_exercise_point_one(250)
-    # fourth_exercise_with_multiprocessing(250)
+    # fourth_exercise_point_one(250)
+    fourth_exercise_with_multiprocessing(250)
