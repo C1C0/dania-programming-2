@@ -18,6 +18,37 @@ t1.start()
 t1.join(<optional: Timeout>)
 ```
 
+### Concurrent.futures
+```py
+import concurrent.futures
+...
+with concurrent.futures.ThreadPoolExecutor() as executor:
+    f1 = executor.submit(callback_reference, ...*params)
+
+    # to get return value
+    f1.result()
+
+    ...
+    # when working with multiple (X) threads
+    results = [executor.submit(do_something, ...*params) for _ in range(10)]
+
+    for f in concurrent.futures.as_completed(results):
+        print(f.result())
+```
+- can return values from thread
+
+#### Using executor.map()
+```py
+with concurrent.futures.ThreadPoolExecutor() as executor:
+    secs = [5,4,3,2,1]
+
+    # runs threads and adds results to the list of "results"
+    results = executor.map(slepp_for_sec, secs)
+
+    for result in results:
+        print(result)
+```
+
 ### Functions
 ```py
 active_count() # The number of threads that are currently alive 
