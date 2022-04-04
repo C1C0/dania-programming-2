@@ -21,9 +21,6 @@ with socket(AF_INET, SOCK_STREAM) as s:
                 # sending message
                 cl.send(bytes(f"{name} Welcome to Server", 'utf-8'))
             
-                # Saving resources
-                cl.close()
-            
     except KeyboardInterrupt:
         print("Shutting down application and all connections")
         exit()
